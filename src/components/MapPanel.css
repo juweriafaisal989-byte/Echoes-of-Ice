@@ -1,0 +1,345 @@
+.polar-map-shell {
+  position: relative;
+  width: 100%;
+  min-height: 420px;
+  overflow: hidden;
+  border: 1px solid rgba(103, 232, 249, 0.2);
+  border-radius: 0 0 16px 16px;
+  background: #061525;
+  isolation: isolate;
+}
+
+.polar-map-shell .leaflet-container {
+  width: 100%;
+  height: 100%;
+  background: #061525;
+  color: #e0f7ff;
+  font-family: inherit;
+}
+
+.polar-map-shell .leaflet-tile {
+  filter: saturate(0.85) contrast(1.04);
+}
+
+/* Glowing research markers */
+.polar-map-shell .polar-marker-glow {
+  filter:
+    drop-shadow(0 0 3px rgba(103, 232, 249, 0.9))
+    drop-shadow(0 0 7px rgba(34, 211, 238, 0.55));
+  cursor: pointer;
+  transition: filter 180ms ease;
+}
+
+.polar-map-shell .polar-marker-glow:hover {
+  filter:
+    drop-shadow(0 0 5px rgba(255, 255, 255, 0.95))
+    drop-shadow(0 0 12px rgba(34, 211, 238, 0.95));
+}
+
+/* Floating map controls */
+.polar-map-controls {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 1000;
+  display: flex;
+  max-width: calc(100% - 28px);
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 6px;
+}
+
+.polar-map-controls button {
+  display: inline-flex;
+  min-height: 36px;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 10px;
+  border: 1px solid rgba(103, 232, 249, 0.23);
+  border-radius: 9px;
+  background: rgba(5, 23, 40, 0.94);
+  color: #c8f5ff;
+  font: inherit;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 5px 18px rgba(0, 0, 0, 0.25);
+  transition:
+    background 160ms ease,
+    border-color 160ms ease,
+    transform 160ms ease;
+}
+
+.polar-map-controls button:hover {
+  border-color: rgba(103, 232, 249, 0.7);
+  background: #103650;
+  transform: translateY(-1px);
+}
+
+.polar-map-controls button:focus-visible {
+  outline: 2px solid #67e8f9;
+  outline-offset: 2px;
+}
+
+/* Map legend */
+.polar-map-legend {
+  position: absolute;
+  bottom: 30px;
+  left: 14px;
+  z-index: 500;
+  display: grid;
+  gap: 10px;
+  min-width: 175px;
+  padding: 14px;
+  border: 1px solid rgba(103, 232, 249, 0.2);
+  border-radius: 12px;
+  background: rgba(5, 23, 40, 0.94);
+  color: #d9edf7;
+  font-size: 11px;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 6px 22px rgba(0, 0, 0, 0.25);
+}
+
+.polar-legend-heading {
+  margin: 0 0 2px;
+  color: #67e8f9;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+}
+
+.polar-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.polar-legend-dot {
+  width: 9px;
+  height: 9px;
+  flex: 0 0 9px;
+  border-radius: 50%;
+}
+
+.polar-map-footer {
+  position: absolute;
+  right: 58px;
+  bottom: 10px;
+  z-index: 500;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #9ac4d7;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  pointer-events: none;
+}
+
+/* Dark zoom controls */
+.polar-map-shell .leaflet-control-zoom {
+  overflow: hidden;
+  border: 1px solid rgba(103, 232, 249, 0.25) !important;
+  border-radius: 10px !important;
+  box-shadow: 0 5px 18px rgba(0, 0, 0, 0.3) !important;
+}
+
+.polar-map-shell .leaflet-control-zoom a {
+  width: 34px !important;
+  height: 34px !important;
+  border-color: rgba(103, 232, 249, 0.15) !important;
+  background: #071e33 !important;
+  color: #c8f5ff !important;
+  line-height: 34px !important;
+}
+
+.polar-map-shell .leaflet-control-zoom a:hover {
+  background: #103650 !important;
+  color: #ffffff !important;
+}
+
+/* Attribution remains readable over the dark map */
+.polar-map-shell .leaflet-control-attribution {
+  background: rgba(5, 23, 40, 0.82) !important;
+  color: #b7cfdd !important;
+  font-size: 9px !important;
+}
+
+.polar-map-shell .leaflet-control-attribution a {
+  color: #67e8f9 !important;
+}
+
+/* Popup */
+.polar-map-shell .leaflet-popup-content-wrapper {
+  overflow: hidden;
+  padding: 0;
+  border: 1px solid rgba(103, 232, 249, 0.35);
+  border-radius: 13px;
+  background: #092139;
+  color: #e5f6ff;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.45);
+}
+
+.polar-map-shell .leaflet-popup-content {
+  width: 260px !important;
+  max-width: calc(100vw - 90px);
+  margin: 0;
+  line-height: 1.5;
+}
+
+.polar-map-shell .leaflet-popup-tip {
+  border: 1px solid rgba(103, 232, 249, 0.25);
+  background: #092139;
+}
+
+.polar-map-shell .leaflet-popup-close-button {
+  z-index: 2;
+  color: #b9eaff !important;
+}
+
+.polar-popup-card {
+  padding: 15px;
+}
+
+.polar-popup-topline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.polar-popup-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #67e8f9;
+}
+
+.polar-verification {
+  display: inline-block;
+  padding: 4px 7px;
+  border-radius: 999px;
+  font-size: 9px;
+  font-weight: 700;
+}
+
+.polar-verification.is-verified {
+  background: rgba(52, 211, 153, 0.12);
+  color: #6ee7b7;
+}
+
+.polar-verification.is-unverified {
+  background: rgba(251, 191, 36, 0.12);
+  color: #fcd34d;
+}
+
+.polar-popup-title {
+  margin: 0 0 5px;
+  padding-right: 12px;
+  color: #f0fbff;
+  font-size: 15px;
+  font-weight: 750;
+  line-height: 1.4;
+}
+
+.polar-popup-subtitle {
+  margin: 0 0 12px;
+  color: #67e8f9;
+  font-size: 11px;
+}
+
+.polar-popup-description {
+  margin: 0 0 12px;
+  color: #c2d7e5;
+  font-size: 12px;
+  line-height: 1.65;
+}
+
+.polar-coordinate {
+  display: grid;
+  gap: 3px;
+  margin-bottom: 10px;
+  padding: 9px;
+  border: 1px solid rgba(103, 232, 249, 0.13);
+  border-radius: 8px;
+  background: rgba(103, 232, 249, 0.05);
+}
+
+.polar-coordinate span {
+  color: #92b5c8;
+  font-size: 10px;
+}
+
+.polar-coordinate strong {
+  color: #e0f7ff;
+  font-size: 11px;
+  overflow-wrap: anywhere;
+}
+
+.polar-map-note {
+  margin: 0 0 10px;
+  color: #fcd34d;
+  font-size: 10px;
+  line-height: 1.5;
+}
+
+.polar-popup-links {
+  display: grid;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.polar-popup-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding-top: 9px;
+  border-top: 1px solid rgba(103, 232, 249, 0.14);
+  color: #67e8f9;
+  font-size: 11px;
+  font-weight: 650;
+  text-decoration: none;
+}
+
+.polar-popup-link:hover {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+@media (max-width: 640px) {
+  .polar-map-shell {
+    min-height: 480px;
+  }
+
+  .polar-map-controls {
+    top: 10px;
+    right: 10px;
+    left: 10px;
+    justify-content: flex-end;
+    gap: 5px;
+  }
+
+  .polar-map-controls button {
+    min-height: 32px;
+    gap: 4px;
+    padding: 6px 8px;
+    font-size: 10px;
+  }
+
+  .polar-map-legend {
+    bottom: 28px;
+    left: 8px;
+    min-width: 155px;
+    gap: 8px;
+    padding: 10px;
+    font-size: 10px;
+  }
+
+  .polar-map-footer {
+    display: none;
+  }
+}
